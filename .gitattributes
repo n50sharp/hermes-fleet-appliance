@@ -1,0 +1,11 @@
+# Force LF line endings regardless of the checkout platform's core.autocrlf setting.
+# Without this, a Windows `git clone` converts LF -> CRLF, and any shell script with a
+# `#!/usr/bin/env bash` shebang breaks at container start (`env: 'bash\r': No such file
+# or directory`, exit 127, endless restart loop under `restart: unless-stopped`).
+*.sh text eol=lf
+entrypoint.sh text eol=lf
+Dockerfile text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf

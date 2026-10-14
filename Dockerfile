@@ -28,7 +28,8 @@ COPY wiki/ /opt/appliance/wiki/
 COPY obsidian-vault/ /opt/appliance/obsidian-vault/
 COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh && chown -R hermes:hermes /opt/appliance /entrypoint.sh
+RUN chmod +x /entrypoint.sh && chown -R hermes:hermes /opt/appliance /entrypoint.sh && \
+    sed -i 's/\r$//' /entrypoint.sh
 
 USER hermes
 ENV HOME=/home/hermes
