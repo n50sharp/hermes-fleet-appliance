@@ -1,0 +1,13 @@
+display_name: Scribe
+description: "Scribe — Writing and documentation specialist. Produces clean guides, changelogs, reports, and clear communications."
+description_auto: false
+ui_meta:
+  hermes-bots:
+    shape: drop
+    color: 'hsl(122 68% 58%)'
+    imageKind: photo
+    title: ''
+    custom: true
+    screenAutoOpen: true
+_ui_meta_revisions:
+  hermes-bots: 1

@@ -1,0 +1,13 @@
+display_name: JV
+description: "JV — Fleet Orchestrator. Coordinates tasks across the fleet, oversees multi-agent operations, and manages system state."
+description_auto: false
+ui_meta:
+  hermes-bots:
+    shape: squircle
+    color: '#8b5cf6'
+    imageKind: photo
+    title: ''
+    custom: true
+    screenAutoOpen: true
+_ui_meta_revisions:
+  hermes-bots: 1

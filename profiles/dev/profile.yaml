@@ -1,0 +1,13 @@
+display_name: Dev
+description: "Dev — Engineering specialist. Builds and maintains dashboards, automations, scripts, and API glue in clean, production-ready code."
+description_auto: false
+ui_meta:
+  hermes-bots:
+    shape: cloud
+    color: 'hsl(349 68% 58%)'
+    imageKind: photo
+    title: ''
+    custom: true
+    screenAutoOpen: true
+_ui_meta_revisions:
+  hermes-bots: 1

@@ -1,0 +1,13 @@
+display_name: Dev2
+description: "Dev2 — Junior engineering sub-agent. Executes focused build sub-tasks, tests, and glue code delegated by Dev."
+description_auto: false
+ui_meta:
+  hermes-bots:
+    shape: pill
+    color: 'hsl(69 68% 58%)'
+    imageKind: photo
+    title: ''
+    custom: true
+    screenAutoOpen: true
+_ui_meta_revisions:
+  hermes-bots: 1

@@ -1,0 +1,16 @@
+# Hermes Agent configuration for profile: Dev2
+agent:
+  fast_auto_seconds: 60
+  max_turns: 150
+  reasoning_effort: medium
+  service_tier: ''
+  verbose: false
+approvals:
+  destructive_slash_confirm: false
+browser:
+  inactivity_timeout: 120
+code_execution:
+  max_tool_calls: 50
+  timeout: 300
+terminal:
+  cwd: /home/hermes/fleet-workspaces/dev2

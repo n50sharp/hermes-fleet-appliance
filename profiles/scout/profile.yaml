@@ -1,0 +1,13 @@
+display_name: Scout
+description: "Scout — Research and sourcing specialist. Tracks industry trends, tooling, news, and market reconnaissance."
+description_auto: false
+ui_meta:
+  hermes-bots:
+    shape: circle
+    color: 'hsl(318 68% 58%)'
+    imageKind: photo
+    title: ''
+    custom: true
+    screenAutoOpen: true
+_ui_meta_revisions:
+  hermes-bots: 1

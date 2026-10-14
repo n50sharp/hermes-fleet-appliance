@@ -1,0 +1,13 @@
+display_name: Reach
+description: "Reach — Growth and communications specialist. Handles distribution, community outreach, and platform engagement."
+description_auto: false
+ui_meta:
+  hermes-bots:
+    shape: cloud
+    color: 'hsl(35 68% 58%)'
+    imageKind: photo
+    title: ''
+    custom: true
+    screenAutoOpen: true
+_ui_meta_revisions:
+  hermes-bots: 1

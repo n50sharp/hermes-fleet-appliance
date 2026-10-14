@@ -1,0 +1,5 @@
+build_appliance.py
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store

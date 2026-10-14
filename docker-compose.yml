@@ -1,0 +1,25 @@
+services:
+  hermes-appliance:
+    build: .
+    image: ghcr.io/n50sharp/hermes-fleet-appliance:latest
+    container_name: hermes-appliance
+    restart: unless-stopped
+    ports:
+      - "51763:51763"
+      - "9119:9119"
+    volumes:
+      - hermes_data:/home/hermes/.hermes
+      - wiki_data:/home/hermes/wiki
+      - obsidian_data:/home/hermes/Obsidian-vaults
+      - mc_data:/home/hermes/agent-mission-control/data
+      - workspaces_data:/home/hermes/fleet-workspaces
+    environment:
+      - PORT=51763
+      - HOST=0.0.0.0
+
+volumes:
+  hermes_data:
+  wiki_data:
+  obsidian_data:
+  mc_data:
+  workspaces_data:
