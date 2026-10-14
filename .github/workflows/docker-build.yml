@@ -69,8 +69,40 @@ jobs:
           docker ps
           docker logs --tail 30 appliance-test
           echo "Checking Hermes command inside container:"
-          docker exec appliance-test which hermes || echo "hermes binary registered"
+          docker exec appliance-test which hermes
+          docker exec appliance-test hermes --version
           docker stop appliance-test
+          docker rm appliance-test
+
+      # Regression test for the volume-shadowing bug: a plain `docker run` above has no
+      # volumes, so it never exercises what happens when docker-compose.yml's named
+      # volume (hermes_data) is mounted fresh/empty at /home/hermes/.hermes, which
+      # previously shadowed the baked-in hermes-agent install and broke the `hermes`
+      # command on every real `docker compose up`. This step runs the actual compose
+      # file end to end and fails the build if that regresses again.
+      - name: Compose Up Regression Test (volume-shadowing bug)
+        run: |
+          docker compose up -d
+          echo "Waiting for appliance services to start under docker compose..."
+          UP=0
+          for i in {1..40}; do
+            if curl -fsS http://localhost:51763/ >/dev/null 2>&1; then
+              echo "Mission Control responded successfully under compose on iteration $i"
+              UP=1
+              break
+            fi
+            sleep 2
+          done
+          if [ $UP -eq 0 ]; then
+            echo "Mission Control did not become ready under docker compose."
+            docker compose logs
+            docker compose down -v
+            exit 1
+          fi
+          echo "Verifying hermes command survives the mounted volume..."
+          docker compose exec -T hermes-appliance which hermes
+          docker compose exec -T hermes-appliance hermes --version
+          docker compose down -v
 
       - name: Push to GHCR on Main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

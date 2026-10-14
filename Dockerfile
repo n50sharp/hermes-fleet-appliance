@@ -40,6 +40,14 @@ RUN git clone --depth 1 https://github.com/NousResearch/hermes-agent.git /home/h
     cd /home/hermes/.hermes/hermes-agent && \
     (./scripts/install.sh --non-interactive || pip install --user hermes-agent || true)
 
+# BUG FIX: docker-compose.yml mounts a named volume at /home/hermes/.hermes for data
+# persistence. An empty volume shadows the hermes-agent source tree installed above at
+# container start, breaking the `hermes` command on every `docker compose up`. Snapshot
+# the fully-installed tree to a path OUTSIDE the mounted volume so entrypoint.sh can
+# restore it into the (possibly empty) volume on first boot.
+RUN mkdir -p /opt/appliance/hermes-agent-seed && \
+    cp -a /home/hermes/.hermes/hermes-agent /opt/appliance/hermes-agent-seed/hermes-agent
+
 # Pre-create directory structures
 RUN mkdir -p /home/hermes/.hermes/profiles /home/hermes/wiki /home/hermes/Obsidian-vaults/note-vault /home/hermes/agent-mission-control /home/hermes/fleet-workspaces
 

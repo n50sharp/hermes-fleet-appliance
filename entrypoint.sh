@@ -9,6 +9,14 @@ APPLIANCE_SEED="/opt/appliance"
 
 echo "=== Booting Hermes Fleet Appliance ==="
 
+# 0. Restore hermes-agent installation if the mounted volume shadowed it (fresh/empty
+#    hermes_data volume on first `docker compose up`, or any other wipe of $HERMES_HOME).
+if [ ! -d "$HERMES_HOME/hermes-agent" ] && [ -d "$APPLIANCE_SEED/hermes-agent-seed/hermes-agent" ]; then
+    echo "Restoring hermes-agent installation into \$HERMES_HOME (volume was empty)..."
+    mkdir -p "$HERMES_HOME"
+    cp -a "$APPLIANCE_SEED/hermes-agent-seed/hermes-agent" "$HERMES_HOME/hermes-agent"
+fi
+
 # 1. Initialize user directories
 mkdir -p "$HERMES_HOME/profiles" "$WIKI_DIR" "$OBSIDIAN_DIR" "$MC_DIR" "$HOME/fleet-workspaces"
 
