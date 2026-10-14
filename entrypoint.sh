@@ -70,7 +70,7 @@ if [ -f "$MC_DIR/server.py" ]; then
     cd "$MC_DIR"
     export PORT="${PORT:-51763}"
     export HOST="${HOST:-0.0.0.0}"
-    python3 "$MC_DIR/server.py" > /tmp/mission-control.log 2>&1 &
+    python3 "$MC_DIR/server.py" 2>&1 | tee /tmp/mission-control.log &
     MC_PID=$!
     echo "Mission Control running with PID $MC_PID"
 fi
@@ -85,6 +85,5 @@ else
     echo "Run 'docker exec -it <container> hermes setup' to add your API keys."
     echo "==================================================="
     trap "kill $MC_PID 2>/dev/null; exit 0" SIGINT SIGTERM
-    tail -f /tmp/mission-control.log &
     wait $MC_PID
 fi

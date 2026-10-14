@@ -99,7 +99,7 @@ AGENT_AVATAR_PATHS = {
     "scribe": os.path.join(HERMES_HOME, "profiles", "scribe", "assets", "avatar.png"),
     "reach": os.path.join(HERMES_HOME, "profiles", "reach", "assets", "avatar.png"),
     "dev": os.path.join(HERMES_HOME, "profiles", "dev", "assets", "avatar.png"),
-    "dev2": os.path.join(HERMES_HOME, "profiles", "dev2", "assets", "avatar.png"): os.path.join(HERMES_HOME, "profiles", "assets", "avatar.png"),
+    "dev2": os.path.join(HERMES_HOME, "profiles", "dev2", "assets", "avatar.png"),
 }
 
 # Chat: which state.db backs each agent's session history.
@@ -257,7 +257,7 @@ AGENT_META = {
     "scribe":       {"code": "A-02", "initials": "SB", "role": "Writing",     "secondaryRoles": ["QA/Testing", "Cyber Expert"], "channel": "#scribe",   "name": "Data",       "short": "SB"},
     "reach":        {"code": "A-03", "initials": "RE", "role": "Marketing",   "secondaryRoles": ["Business Analysis"], "channel": "#reach",    "name": "Seven",        "short": "RE"},
     "dev":          {"code": "A-04", "initials": "DV", "role": "Engineering", "secondaryRoles": ["Software Architect"], "channel": "#dev",      "name": "Scotty",          "short": "DV"},
-    "dev2":         {"code": "A-05", "initials": "D2", "role": "Engineering (sub-agent)", "secondaryRoles": ["UI/UX Designer Expert"], "channel": "#dev2", "name": "La Forge", "short": "D2"}:    {"code": "A-06", "initials": "TM", "role": "Trading",     "secondaryRoles": [], "channel": "#custom_agent", "name": "custom_agent",   "short": "TM"},
+    "dev2":         {"code": "A-05", "initials": "D2", "role": "Engineering (sub-agent)", "secondaryRoles": ["UI/UX Designer Expert"], "channel": "#dev2", "name": "La Forge", "short": "D2"},
 }
 AGENT_ORDER = ["orchestrator", "scout", "scribe", "reach", "dev", "dev2"]
 
@@ -271,7 +271,7 @@ AGENT_CONFIG_PATH = {
     "scribe": os.path.join(HERMES_HOME, "profiles", "scribe", "config.yaml"),
     "reach": os.path.join(HERMES_HOME, "profiles", "reach", "config.yaml"),
     "dev": os.path.join(HERMES_HOME, "profiles", "dev", "config.yaml"),
-    "dev2": os.path.join(HERMES_HOME, "profiles", "dev2", "config.yaml"): os.path.join(HERMES_HOME, "profiles", "config.yaml"),
+    "dev2": os.path.join(HERMES_HOME, "profiles", "dev2", "config.yaml"),
 }
 
 def get_agent_config_path(agent):
@@ -942,7 +942,7 @@ FAOS_RINGS_AGENT_META = {
     "scribe":       {"name": "Data",         "role": "Writing"},
     "reach":        {"name": "Seven",        "role": "Marketing"},
     "dev":          {"name": "Scotty",       "role": "Engineering"},
-    "dev2":         {"name": "La Forge",     "role": "Engineering (sub-agent)"}:    {"name": "custom_agent",    "role": "Trading"},
+    "dev2":         {"name": "La Forge",     "role": "Engineering (sub-agent)"},
 }
 
 def get_effective_agents_meta():
@@ -1027,8 +1027,7 @@ def get_effective_faos_agent_meta():
 FAOS_AGENT_AVATARS = {
     "orchestrator": "JV.jpg",
     "jv":           "JV.jpg",
-    "root":         "JV.jpg":    "TM.jpg",
-    "tm":           "TM.jpg",
+    "root":         "JV.jpg",
     "scout":        "Scout.jpg",
     "scribe":       "Scribe.jpg",
     "reach":        "Reach.jpg",
@@ -2068,7 +2067,7 @@ AGENT_PIPER_VOICES = {
     "scribe": "female",
     "reach": "male",
     "dev": "male",
-    "dev2": "male": "male",
+    "dev2": "male",
 }
 
 _PIPER_CACHE = {}
