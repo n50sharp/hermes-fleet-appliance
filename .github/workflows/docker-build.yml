@@ -18,6 +18,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Guard: a single JS syntax error in index.html silently kills the whole UI (no nav,
+      # no pages, only the static shell). The HTTP 200 smoke test cannot see that.
+      - name: Validate Mission Control JS and Python syntax, and no leaked identifiers
+        run: |
+          python3 - <<'EOF'
+          import re, subprocess, sys
+          s = open('mission-control/index.html', encoding='utf-8').read()
+          blocks = [b for b in re.findall(r"<script(?![^>]*src)[^>]*>(.*?)</script>", s, re.S) if len(b) > 10000]
+          assert blocks, "main script block not found"
+          open('/tmp/main.js', 'w').write(blocks[0])
+          r = subprocess.run(['node', '--check', '/tmp/main.js'], capture_output=True, text=True)
+          print(r.stderr)
+          sys.exit(r.returncode)
+          EOF
+          python3 -m py_compile mission-control/*.py
+          for r in agents faos wiki chat content schedule docs tasks builds; do
+            grep -q "route-$r" mission-control/index.html || { echo "missing route $r"; exit 1; }
+          done
+          if grep -rnIiE "effibit|treasury|codev-dashboard|xpub|tradermax|taile6e66b|100\.65\.|510041509|ryzen5800" . --exclude-dir=.git --exclude-dir=.github; then
+            echo "leaked private identifier found"; exit 1
+          fi
+
       - name: Free disk space on runner
         run: |
           echo "Before cleanup:" && df -h /

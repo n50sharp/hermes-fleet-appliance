@@ -761,7 +761,7 @@ tailwind.config = {
                   One orchestrator. <span class="text-blue-600 font-normal italic"><span data-hero="overview-spec-count-words">Six</span> specialists.</span>
                 </h2>
                 <p class="text-xs text-slate-500 mt-1">
-                  Hermes is coordinating <span class="text-slate-800 font-medium" data-hero="overview-spec-names">Spock · Data · Seven · Scotty · La Forge · custom_agent</span>
+                  Hermes is coordinating <span class="text-slate-800 font-medium" data-hero="overview-spec-names">Spock · Data · Seven · Scotty · La Forge</span>
                 </p>
               </div>
               <div class="flex items-center gap-2">
@@ -1148,15 +1148,15 @@ tailwind.config = {
             </div>
           </section>
 
-          <!-- Ryzen Fleet Circular Ring Section (Physically Separate Host at 100.65.84.84) -->
+          <!-- Ryzen Fleet Circular Ring Section (Physically Separate Host at remote-node.invalid) -->
           <section id="faos-ryzen-fleet-section" class="bg-white rounded-2xl border border-border shadow-card overflow-hidden">
             <div class="px-6 py-4 border-b border-border flex items-center justify-between">
               <div>
                 <div class="flex items-center gap-2.5">
                   <h3 class="text-sm font-semibold text-slate-900">Ryzen Fleet</h3>
-                  <span id="faos-ryzen-badge" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">ONLINE (100.65.84.84)</span>
+                  <span id="faos-ryzen-badge" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">ONLINE (remote-node.invalid)</span>
                 </div>
-                <p class="text-[11px] text-slate-400 mt-0.5">Physically separate machine at 100.65.84.84:8642. Center hub: Ryzen JV. Outer ring: Scout, Scribe, Dev.</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">Physically separate machine at remote-node.invalid:8642. Center hub: Ryzen JV. Outer ring: Scout, Scribe, Dev.</p>
               </div>
               <div class="flex items-center gap-2">
                 <button onclick="faosLoadRyzen()" class="px-2.5 py-1 rounded-md border border-slate-200 bg-white text-slate-600 hover:text-slate-900 text-xs font-mono inline-flex items-center gap-1">
@@ -1210,7 +1210,7 @@ tailwind.config = {
                 <span class="text-xs font-semibold text-blue-900 flex items-center gap-1.5">
                   <i data-lucide="send" class="size-3.5 text-blue-600"></i> Dispatch Task to Ryzen JV
                 </span>
-                <span class="text-[10px] font-mono text-blue-600 font-semibold bg-blue-100/80 px-2 py-0.5 rounded">100.65.84.84:8642 (Claude Sonnet 5)</span>
+                <span class="text-[10px] font-mono text-blue-600 font-semibold bg-blue-100/80 px-2 py-0.5 rounded">remote-node.invalid:8642 (Claude Sonnet 5)</span>
               </div>
               <div class="flex gap-2">
                 <input id="faos-ryzen-task-input" type="text" placeholder="Task description or instruction for Ryzen JV (e.g. Reply with status)..." 
@@ -1472,8 +1472,7 @@ tailwind.config = {
                   <option value="reach">reach</option>
                   <option value="dev" selected>dev</option>
                   <option value="dev2">dev2</option>
-                  <option value=>custom_agent</option>
-                </select>
+                                  </select>
               </div>
             </div>
 
@@ -1841,8 +1840,8 @@ tailwind.config = {
                     <div class="flex items-center gap-2.5">
                       <div class="size-8 rounded-lg bg-orange-100 text-orange-800 flex items-center justify-center font-bold text-xs">RZ</div>
                       <div>
-                        <h4 class="text-sm font-semibold text-slate-900">Remote Node (NGOM-RYZEN5800X)</h4>
-                        <p class="text-[11px] text-slate-500 font-mono">100.65.84.84:8642 &middot; High-Compute Worker</p>
+                        <h4 class="text-sm font-semibold text-slate-900">Remote Node (REMOTE-NODE)</h4>
+                        <p class="text-[11px] text-slate-500 font-mono">remote-node.invalid:8642 &middot; High-Compute Worker</p>
                       </div>
                     </div>
                     <span id="jv-ryzen-badge" class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">ONLINE</span>
@@ -1976,7 +1975,7 @@ tailwind.config = {
       <div class="px-6 md:px-8 pt-6 pb-3 border-b border-border/60">
         <div class="flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-slate-500 uppercase"><i data-lucide="users" class="size-3 text-blue-600"></i> Tab · Agents</div>
         <h2 class="text-[26px] md:text-[30px] tracking-tight text-slate-900 mt-1.5">Every specialist, measured</h2>
-        <p class="font-sans text-[14px] text-slate-500 leading-relaxed mt-2 max-w-3xl">The performance view for your seven agents — the Orchestrator, La Forge, custom_agent, plus Spock, Data, Seven, and Scotty. See who's carrying the load, how reliable each one is, and exactly what they've been doing.</p>
+        <p class="font-sans text-[14px] text-slate-500 leading-relaxed mt-2 max-w-3xl">The performance view for your six agents — the Orchestrator, La Forge, plus Spock, Data, Seven, and Scotty. See who's carrying the load, how reliable each one is, and exactly what they've been doing.</p>
       </div>
       <div class="px-6 md:px-8 py-2">
         <div class="flex flex-col sm:flex-row gap-1 sm:gap-5 py-3.5 border-b border-border/40"><div class="sm:w-56 shrink-0 font-sans text-[14px] text-slate-900 font-medium">Fleet header stats</div><div class="flex-1 font-sans text-[13.5px] text-slate-500 leading-relaxed">Top-line totals for the last 24 hours: tasks logged, average success rate, and the share of work routed to your fast model.</div></div>
@@ -2348,7 +2347,6 @@ let AGENTS = [
   { code:'A-03', initials:'RE', name:'Seven',        role:'Marketing',   secondaryRoles:['Business Analysis'], channel:'#reach',    state:'IDLE',      task:'Awaiting Data handoff · last cycle 4m 12s', load:6, tokens:'0', latency:'—', success:99.1, tasksToday:96, share:14, defaultModel:'gpt-5-mini' },
   { code:'A-04', initials:'DV', name:'Scotty',       role:'Engineering', secondaryRoles:['Software Architect'], channel:'#dev',      state:'RETRY',     task:'cron sync · node 0x9f timeout · retry 1/3',   load:18, tokens:'92k', latency:'—', success:97.2, tasksToday:68, share:12, defaultModel:'gpt-5' },
   { code:'A-05', initials:'D2', name:'La Forge',     role:'Engineering (sub-agent)', secondaryRoles:['UI/UX Designer Expert'], channel:'#dev2', state:'IDLE', task:'Standby for delegated tasks', load:0, tokens:'0', latency:'—', success:99.0, tasksToday:12, share:0, defaultModel:'gpt-5-mini' },
-  { code:'A-06', initials:'TM', name:'custom_agent',   role:'Trading',     channel:'#custom_agent', state:'IDLE', task:'Monitoring liquidity & sleeves', load:0, tokens:'0', latency:'—', success:99.5, tasksToday:24, share:0, defaultModel:'gpt-5-mini' },
 ];
 let MODELS = [
   { id:'claude-sonnet-4.5', label:'Claude Sonnet 4.5', vendor:'Anthropic', tier:'Balanced' },
@@ -2372,9 +2370,8 @@ const NAV_ITEMS_APPS = [
   { label:'Content',   icon:'folder-open', to:'#/content' },
   { label:'Schedule',  icon:'calendar-clock', to:'#/schedule' },
   { label:'Jarvis',    icon:'mic', to:'#/jarvis' },
-  { label:'metrics',  icon:'coins', to:'https://hermes-appliance.taile6e66b.ts.net:8842/', external:true },
-  { label:'Mnemosyne', icon:'brain', to:'https://hermes-appliance.taile6e66b.ts.net:8846/', external:true },
-  { label:'ADLC',      icon:'network', to:'https://hermes-appliance.taile6e66b.ts.net:8845/', external:true },
+  { label:'Mnemosyne', icon:'brain', to:'https://localhost:8846/', external:true },
+  { label:'ADLC',      icon:'network', to:'https://localhost:8845/', external:true },
   { label:'Docs',      icon:'book-open', to:'#/docs' },
 ];
 document.addEventListener('click', e => { const j = e.target.closest('[data-docjump]'); if (j){ const el = document.getElementById(j.dataset.docjump); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); } });
@@ -2679,7 +2676,6 @@ let CHAT_AGENTS_UI = [
   { key:'reach',        name:'Seven',        role:'Marketing',   secondaryRoles:['Business Analysis'], ini:'RE', tint:'oklch(0.62 0.20 340)' },
   { key:'dev',          name:'Scotty',       role:'Engineering', secondaryRoles:['Software Architect'], ini:'DV', tint:'oklch(0.62 0.16 150)' },
   { key:'dev2',         name:'La Forge',     role:'Engineering (sub-agent)', secondaryRoles:['UI/UX Designer Expert'], ini:'D2', tint:'oklch(0.60 0.22 290)' },
-  { key:name:'custom_agent',    role:'Trading',     ini:'TM', tint:'oklch(0.65 0.18 60)' },
 ];
 const CHAT_HIST = {};           // {agentKey: [{role,text,ts}]}
 const CHAT_LOADED = {}, CHAT_TEL = {};   // per-agent: history backfilled?, is telegram thread?
@@ -3100,7 +3096,6 @@ function faosProfileColor(profile) {
     scout:  { bg: '#059669', border: '#047857', glow: 'rgba(5,150,105,0.4)' },
     scribe: { bg: '#d97706', border: '#b45309', glow: 'rgba(217,119,6,0.3)' },
     reach:  { bg: '#dc2626', border: '#b91c1c', glow: 'rgba(220,38,38,0.4)' },
-    custom_agent: { bg: '#2563eb', border: '#1d4ed8', glow: 'rgba(37,99,235,0.4)' },
   };
   return map[profile] || { bg: '#64748b', border: '#475569', glow: 'rgba(100,116,139,0.25)' };
 }
@@ -3231,7 +3226,6 @@ const FAOS_AGENT_AVATARS = {
   jv: '/assets/agents/JV.jpg',
   ce: '/assets/agents/JV.jpg',
   root: '/assets/agents/JV.jpg',
-  custom_agent: '/assets/agents/TM.jpg',
   tm: '/assets/agents/TM.jpg',
   scout: '/assets/agents/Scout.jpg',
   scribe: '/assets/agents/Scribe.jpg',
@@ -3354,7 +3348,7 @@ function faosRenderGenericCircularRing(options) {
     const strokeColor = isSelected ? '#2563eb' : (running ? '#10b981' : (isDark ? 'rgba(255,255,255,0.12)' : '#e2e8f0'));
     const strokeWidth = isSelected ? 3.5 : (running ? 2.5 : 1.5);
 
-    const isTm = (aId === || aId === 'tm');
+    const isTm = (aId === 'tm');
     const par = isTm ? 'xMidYMid slice' : 'xMidYMin slice';
 
     segmentsHtml += `
@@ -3458,7 +3452,7 @@ function faosRenderRyzenRing() {
   if (badge) {
     if (FAOS_RYZEN_DATA && FAOS_RYZEN_DATA.reachable) {
       badge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
-      badge.textContent = 'ONLINE (100.65.84.84)';
+      badge.textContent = 'ONLINE (remote-node.invalid)';
     } else if (FAOS_RYZEN_DATA && !FAOS_RYZEN_DATA.reachable) {
       badge.className = 'px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-amber-50 text-amber-700 border border-amber-200';
       badge.textContent = 'UNREACHABLE (DEGRADED)';
@@ -3524,7 +3518,7 @@ async function faosDispatchRyzenTask() {
   }
   if (statusEl) {
     statusEl.className = 'text-[11px] font-mono px-2.5 py-1 rounded bg-blue-100 text-blue-800';
-    statusEl.textContent = 'Posting run to Ryzen JV API (100.65.84.84:8642)...';
+    statusEl.textContent = 'Posting run to Ryzen JV API (remote-node.invalid:8642)...';
     statusEl.classList.remove('hidden');
   }
 
@@ -3647,7 +3641,7 @@ function faosUpdateCards() {
   const agentMeta = isOrch ? { name: 'JV / CE', role: 'Orchestrator' } : faosAgentMeta(selKey);
   const avatarUrl = faosGetAgentAvatar(selKey);
 
-  const isCard1TM = selKey === || selKey === 'tm';
+  const isCard1TM = selKey === 'tm';
   if (card1Avatar) card1Avatar.innerHTML = `<img src="${avatarUrl}" class="w-full h-full object-cover ${isCard1TM ? 'object-center' : 'object-top'}">`;
   if (card1Title) card1Title.textContent = `Missions & Tasks — ${agentMeta.name || selKey.toUpperCase()}`;
   if (card1Subtitle) card1Subtitle.textContent = `Active Kanban tasks & scheduled cron jobs for ${agentMeta.name || selKey}.`;
@@ -5805,7 +5799,7 @@ function renderAgents() {
       <div class="flex items-start justify-between">
         <div class="flex items-center gap-3">
           <div class="relative">
-            <img src="${faosGetAgentAvatar(a.name)}" alt="${a.name}" class="size-12 rounded-full object-cover ${(a.name||'').toLowerCase().includes() ? 'object-center' : 'object-top'}" onerror="avatarFallback(this, '${a.initials}', 'size-12 rounded-2xl ${badge}')">
+            <img src="${faosGetAgentAvatar(a.name)}" alt="${a.name}" class="size-12 rounded-full object-cover ${(a.name||'').toLowerCase().includes('__none__') ? 'object-center' : 'object-top'}" onerror="avatarFallback(this, '${a.initials}', 'size-12 rounded-2xl ${badge}')">
             <span class="absolute -top-1 -right-1 size-2.5 rounded-full bg-ember status-pulse text-ember"></span>
           </div>
           <div class="leading-tight">
@@ -5898,7 +5892,7 @@ function renderAgents() {
       const opts = listed.map(mm => `<option value="${mm.id}" ${mm.id===pending?'selected':''} class="bg-ink text-cream">${mm.label}</option>`).join('');
       const dirty = pending !== ASSIGNED[a.code];
       return `<div class="group flex items-center gap-3 p-3 rounded-[22px] reference-log-card hover:bg-[rgb(247_240_225_/_0.08)] transition-colors">
-        <img src="${faosGetAgentAvatar(a.name)}" alt="${a.name}" class="size-9 rounded-full object-cover ${(a.name||'').toLowerCase().includes() ? 'object-center' : 'object-top'} shrink-0" onerror="avatarFallback(this, '${a.initials}', 'size-9 rounded-xl bg-ink text-cream shrink-0')">
+        <img src="${faosGetAgentAvatar(a.name)}" alt="${a.name}" class="size-9 rounded-full object-cover ${(a.name||'').toLowerCase().includes('__none__') ? 'object-center' : 'object-top'} shrink-0" onerror="avatarFallback(this, '${a.initials}', 'size-9 rounded-xl bg-ink text-cream shrink-0')">
         <div class="leading-tight min-w-0 flex-1">
           <div class="font-display text-[16px] text-cream">${a.name}</div>
           <div class="flex flex-wrap items-center gap-1.5">
@@ -6070,7 +6064,7 @@ const COLUMNS = [
   { id:'done',      label:'Done',      sub:'Completed',       icon:'check-circle-2',tone:'bg-slate-900 text-white' },
 ];
 // profile slug -> agent name (default profile = the Orchestrator)
-const PROFILE_NAMES = { default:'Orchestrator', scout:'Spock', scribe:'Data', reach:'Seven', dev:'Scotty', dev2:'La Forge', custom_agent:'custom_agent' };
+const PROFILE_NAMES = { default:'Orchestrator', scout:'Spock', scribe:'Data', reach:'Seven', dev:'Scotty', dev2:'La Forge' };
 const PROFILE_OPTIONS = ['default','scout','scribe','reach','dev','dev2','none'];
 const agentName = (a) => a ? (PROFILE_NAMES[a] || a) : 'Unassigned';
 let TASK_QUERY = '';
@@ -6260,7 +6254,7 @@ function panelListsHTML(d) {
 }
 function panelShell() {
   return `<div id="panel-head"></div>
-    <div class="mt-5"><div class="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-2">Add comment (as ngom)</div>
+    <div class="mt-5"><div class="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-2">Add comment (as owner)</div>
       <textarea id="panel-comment" rows="3" class="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-xs outline-none" placeholder="Write a comment…"></textarea>
       <button data-pact="comment" class="mt-2 px-3 h-8 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700">Add comment</button></div>
     <div id="panel-lists"></div>`;
@@ -6607,7 +6601,7 @@ document.addEventListener('DOMContentLoaded', () => {
       drawerBody.innerHTML = `
         <div class="flex items-center justify-between mb-5">
           <div class="flex items-center gap-3">
-            <img src="${faosGetAgentAvatar(a.name)}" alt="${esc2(a.name)}" class="size-12 rounded-full object-cover ${(a.name||'').toLowerCase().includes() ? 'object-center' : 'object-top'}" onerror="avatarFallback(this, '${esc2(a.initials)}', 'size-12 rounded-2xl bg-ink text-cream')">
+            <img src="${faosGetAgentAvatar(a.name)}" alt="${esc2(a.name)}" class="size-12 rounded-full object-cover ${(a.name||'').toLowerCase().includes('__none__') ? 'object-center' : 'object-top'}" onerror="avatarFallback(this, '${esc2(a.initials)}', 'size-12 rounded-2xl bg-ink text-cream')">
             <div><div class="font-display text-[24px] text-ink leading-none">${esc2(a.name)}</div>
               <div class="flex flex-wrap items-center gap-1.5 mt-1">
                 <span class="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">${esc2(a.role)} · ${esc2(a.channel)}</span>

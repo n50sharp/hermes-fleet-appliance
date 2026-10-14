@@ -64,7 +64,7 @@ If/when auto-merge is enabled for a specific trivial loop:
 | Database | — | no production write from loops (agent-logs.db, metrics caches are denylisted above) |
 
 Use separate bot accounts / tokens with minimal scopes if/when a loop needs
-its own GitHub token — do not reuse Ngom's personal `gh` auth for unattended
+its own GitHub token — do not reuse the owner's personal `gh` auth for unattended
 runs.
 
 ## Human Gates (Required)

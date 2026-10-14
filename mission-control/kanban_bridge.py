@@ -33,7 +33,7 @@ PROFILES = ["default", "scout", "scribe", "reach", "dev", "dev2"]
 # Statuses a UI *move* may target. "running" is deliberately absent: the
 # dispatcher/claim path owns it (plugin_api rejects it the same way).
 MOVE_TARGETS = {"triage", "todo", "scheduled", "ready", "blocked", "review", "done"}
-ACTOR = "ngom"
+ACTOR = "owner"
 
 
 def _load_plugin_api():

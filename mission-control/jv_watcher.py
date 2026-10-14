@@ -144,7 +144,7 @@ def read_active_window():
 
     # Fallback to dominant user process
     try:
-        res = subprocess.run(['ps', '-u', 'ngom', '-o', 'comm,%cpu', '--sort=-%cpu'], capture_output=True, text=True, timeout=1.5)
+        res = subprocess.run(['ps', '-u', os.environ.get('USER','hermes'), '-o', 'comm,%cpu', '--sort=-%cpu'], capture_output=True, text=True, timeout=1.5)
         for line in res.stdout.splitlines()[1:]:
             parts = line.strip().split()
             if parts and parts[0] in ('chrome', 'google-chrome', 'firefox', 'code', 'gnome-terminal', 'bash', 'python3'):
@@ -203,14 +203,14 @@ def read_system_health():
 
 
 MNEMOSYNE_HEALTH_URL = os.environ.get("FAOS_MNEMOSYNE_HEALTH_URL", "http://127.0.0.1:8765/api/health")
-MNEMOSYNE_TAILSCALE_URL = "https://hermes-appliance.taile6e66b.ts.net:8846/api/health"
+MNEMOSYNE_TAILSCALE_URL = "https://localhost:8846/api/health"
 
 
 def read_mnemosyne_health():
     """Zero-LLM health probe for the Mnemosyne dashboard (port 8765 local /
     8846 tailnet serve). Mirrors read_system_health()'s urgent-bypass shape
     so a down Mnemosyne fires the same Stage-1 urgent alert path as disk/CPU,
-    without waiting on Ngom to notice and ask."""
+    without waiting on the owner to notice and ask."""
     t0 = time.time()
     try:
         req = urllib.request.Request(MNEMOSYNE_HEALTH_URL, method="GET")
@@ -321,15 +321,15 @@ def compose_nudge_via_orchestrator(topic, context_summary, urgent_message=None):
     if urgent_message:
         prompt = (
             f"URGENT SYSTEM ALERT: {urgent_message}. "
-            f"As JV (Jarvis), alert Ngom concisely in 1 sentence with immediate recommended action."
+            f"As JV (Jarvis), alert the owner concisely in 1 sentence with immediate recommended action."
         )
     else:
         prompt = (
-            f"Proactive context: Ngom has been idle / context switch detected. "
+            f"Proactive context: the owner has been idle / context switch detected. "
             f"Topic: {topic['name']} ({topic['prompt_hint']}). "
             f"Recent host context: {context_summary}. "
             f"As JV (Jarvis), give a friendly, proactive 1-2 sentence check-in or nudge. "
-            f"Do not use filler. Address Ngom directly."
+            f"Do not use filler. Address the owner directly."
         )
 
     # Attempt 1: POST to local agent-mission-control /api/chat/send (streaming chunks)
@@ -390,7 +390,7 @@ def compose_nudge_via_orchestrator(topic, context_summary, urgent_message=None):
 
     # Graceful fallback: clean synthesized JV response
     fallback_text = (
-        f"Ngom, checking in — I noticed you've stepped back from {context_summary}. "
+        f"the owner, checking in — I noticed you've stepped back from {context_summary}. "
         f"Let me know when you're ready to dispatch the next workflow or resume."
     )
     return fallback_text, "synthesized-fallback"

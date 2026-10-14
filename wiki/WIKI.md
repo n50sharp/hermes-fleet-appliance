@@ -4,11 +4,11 @@ This file is the wiki's own law. Every agent reads it before touching `/home/her
 
 ## Where a page goes
 
-- What Ngom makes or sells → `processed/business/`.
+- What the owner makes or sells → `processed/business/`.
 - What we read to learn (outside material, other people's claims) → `processed/research/`.
-- Everything else about Ngom → `processed/personal/`.
+- Everything else about the owner → `processed/personal/`.
 - A person's page goes where the money flows: a customer, a supplier, and a partner are three different kinds of page, filed by that relationship — not lumped together just because they're all "people."
-- When two folders both fit, file the page where Ngom would look for it later. Example: a competitor's price list goes in `research/` — he opens it to check the market, not to remember his own price.
+- When two folders both fit, file the page where the owner would look for it later. Example: a competitor's price list goes in `research/` — he opens it to check the market, not to remember his own price.
 - Every page has exactly **one** home. No page lives in two folders.
 
 ## Names and links
@@ -39,7 +39,7 @@ This file is the wiki's own law. Every agent reads it before touching `/home/her
 
 ## Research tier
 
-`research/` is what WE READ; `personal/` and `business/` are MY (Ngom's) world. Never mix the two.
+`research/` is what WE READ; `personal/` and `business/` are MY (the owner's) world. Never mix the two.
 
 **Provenance block** — every research page opens with exactly this, before anything else:
 

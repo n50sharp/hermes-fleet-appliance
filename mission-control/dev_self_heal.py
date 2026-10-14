@@ -167,22 +167,22 @@ def _load_hermes_env() -> Dict[str, str]:
 def send_telegram_notification(text: str, topic_id: Optional[int] = None) -> Tuple[bool, str]:
     """
     Posts diff + explanation to Telegram via Telegram Bot API.
-    Primary target: TELEGRAM_HOME_CHANNEL (Ngom direct, e.g. 510041509)
-    Secondary target: group chat thread (e.g. topic 7505 on -1003940830491)
+    Primary target: TELEGRAM_HOME_CHANNEL (the owner direct, e.g. <chat-id>)
+    Secondary target: group chat thread (e.g. topic 7505 on <group-id>)
     """
     env = _load_hermes_env()
     token = os.environ.get("TELEGRAM_BOT_TOKEN") or env.get("TELEGRAM_BOT_TOKEN")
     if not token:
         return False, "TELEGRAM_BOT_TOKEN not configured in env or ~/.hermes/.env"
 
-    chat_id = os.environ.get("TELEGRAM_HOME_CHANNEL") or env.get("TELEGRAM_HOME_CHANNEL") or "510041509"
-    group_chat_id = os.environ.get("TELEGRAM_GROUP_CHAT_ID") or "-1003940830491"
+    chat_id = os.environ.get("TELEGRAM_HOME_CHANNEL") or env.get("TELEGRAM_HOME_CHANNEL") or ""
+    group_chat_id = os.environ.get("TELEGRAM_GROUP_CHAT_ID") or "<group-id>"
 
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     successes = []
     errors = []
 
-    # Attempt 1: Direct home channel (Ngom's direct notification bot channel)
+    # Attempt 1: Direct home channel (the owner's direct notification bot channel)
     try:
         payload = {
             "chat_id": chat_id,

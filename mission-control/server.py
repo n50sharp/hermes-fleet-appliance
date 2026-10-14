@@ -208,7 +208,7 @@ def _load_project_env():
     return values
 
 _PROJECT_ENV = _load_project_env()
-RYZEN_API_BASE = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://100.65.84.84:8642")
+RYZEN_API_BASE = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://remote-node.invalid:8642")
 RYZEN_DISPATCHES_PATH = os.path.join(PROJECT_DIR, "ryzen_dispatches.json")
 _ryzen_dispatches_lock = threading.Lock()
 _ryzen_fleet_cache = {"data": None, "ts": 0}
@@ -281,7 +281,7 @@ def get_agent_config_path(agent):
 # Same base_url as the "ryzen-ollama" custom_providers entry in every
 # profile's config.yaml — needed when live-switching an agent TO a Ryzen
 # model, since `model.base_url` must be set alongside provider/default.
-RYZEN_OLLAMA_BASE_URL = "http://100.65.84.84:11434/v1"
+RYZEN_OLLAMA_BASE_URL = "http://remote-node.invalid:11434/v1"
 _MODEL_BLOCK_RE = re.compile(
     r"^model:\s*\n((?:[ \t]+\S.*\n?)+)", re.MULTILINE
 )
@@ -336,7 +336,7 @@ def read_agent_configured_model(agent):
 # hard minimum — confirmed via `POST /api/show` on the Ryzen box, same base
 # weights as gemma4:e2b which reports the full 131072 via model_info).
 # Every Ryzen/Ollama id below was verified installed + context-length via
-# `GET /api/tags` + `POST /api/show` against http://100.65.84.84:11434.
+# `GET /api/tags` + `POST /api/show` against http://remote-node.invalid:11434.
 # Every Nous id below was verified to exist via `GET /v1/models` against
 # https://inference-api.nousresearch.com.
 SWITCHABLE_MODELS = [
@@ -351,7 +351,7 @@ SWITCHABLE_MODELS = [
     {"id": "custom:ryzen-ollama:gemma4:latest",      "label": "Gemma 4 (latest)",   "vendor": "Ryzen (Ollama)", "tier": "Balanced"},
     {"id": "custom:ryzen-ollama:Agen/gemma-4-26B-A4B-it-uncensored-heretic:latest", "label": "Gemma 4 26B Uncensored Heretic", "vendor": "Ryzen (Ollama)", "tier": "Reasoning"},
     # sonct988/gemma4-26b-a4b-it-q4km-256k — verified installed + context via
-    # `GET /api/tags` + `POST /api/show` against http://100.65.84.84:11434
+    # `GET /api/tags` + `POST /api/show` against http://remote-node.invalid:11434
     # (2026-09-27): 25.2B params, Q4_K_M quant, 262144 (256K) context.
     {"id": "custom:ryzen-ollama:sonct988/gemma4-26b-a4b-it-q4km-256k:latest", "label": "Gemma 4 26B Q4KM 256K", "vendor": "Ryzen (Ollama)", "tier": "Reasoning"},
     # Nous Portal (provider: nous, base_url https://inference-api.nousresearch.com/v1).
@@ -1052,7 +1052,7 @@ def get_effective_faos_agent_avatars():
     return avatars
 
 # ---------------------------------------------------------------------------
-# Ryzen Remote Fleet Helpers (Cross-Machine Fleet at 100.65.84.84)
+# Ryzen Remote Fleet Helpers (Cross-Machine Fleet at remote-node.invalid)
 # ---------------------------------------------------------------------------
 
 def read_ryzen_dispatches():
@@ -1090,7 +1090,7 @@ def save_ryzen_dispatch(dispatch_dict):
         return items
 
 def update_pending_ryzen_dispatches(dispatches):
-    base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://100.65.84.84:8642")
+    base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://remote-node.invalid:8642")
     key = _get_ryzen_key("ryzen-jv")
     if not key:
         return dispatches
@@ -1135,7 +1135,7 @@ def update_pending_ryzen_dispatches(dispatches):
     return dispatches
 
 def dispatch_task_to_ryzen(profile, task_text):
-    base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://100.65.84.84:8642")
+    base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://remote-node.invalid:8642")
     key = _get_ryzen_key(profile)
     if not key:
         return {"ok": False, "error": f"No API key configured for {profile}"}
@@ -1184,7 +1184,7 @@ def poll_single_ryzen_dispatch(run_id):
     if not found:
         return None
     if found.get("status") in ("started", "running"):
-        base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://100.65.84.84:8642")
+        base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://remote-node.invalid:8642")
         key = _get_ryzen_key(found.get("target") or "ryzen-jv")
         if key:
             try:
@@ -1216,7 +1216,7 @@ def get_ryzen_fleet_payload():
     if _ryzen_fleet_cache["data"] is not None and (now - _ryzen_fleet_cache["ts"]) < 5.0:
         return _ryzen_fleet_cache["data"]
 
-    base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://100.65.84.84:8642")
+    base = os.environ.get("RYZEN_API_BASE") or _PROJECT_ENV.get("RYZEN_API_BASE", "http://remote-node.invalid:8642")
     dispatches = read_ryzen_dispatches()
     dispatches = update_pending_ryzen_dispatches(dispatches)
 
@@ -2385,7 +2385,7 @@ def board_show(task_id):
 
 
 def board_action(action, payload):
-    """comment / assign / block / unblock via the bridge (actor fixed to 'ngom')."""
+    """comment / assign / block / unblock via the bridge (actor fixed to 'owner')."""
     if action not in ("comment", "assign", "block", "unblock"):
         raise ValueError(f"unknown action: {action}")
     if not payload.get("id"):

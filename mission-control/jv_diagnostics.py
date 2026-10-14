@@ -77,7 +77,7 @@ def get_ryzen_host_diagnostics():
 
     return {
         "host": "ryzen",
-        "hostname": "NGOM-RYZEN5800X",
+        "hostname": "REMOTE-NODE",
         "os": "Windows 11",
         "reachable": False,
         "error": "Host unreachable or metrics timeout",
