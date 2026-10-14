@@ -42,6 +42,34 @@ The appliance comes pre-configured with 6 decoupled profiles:
 - **Docker Engine** (version 24.0+) or **Docker Desktop**
 - **Docker Compose** (Compose V2)
 
+### Windows
+
+This image is a Linux container — it runs on Windows unchanged via Docker Desktop's WSL2 backend.
+No Windows-specific build is produced; the published image targets `linux/amd64` (standard for
+Windows PCs; see note below for ARM devices).
+
+1. Install **[Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)**.
+2. During setup, ensure **"Use WSL 2 based engine"** is enabled (Settings → General). If WSL2
+   itself isn't installed yet, run in an elevated PowerShell:
+   ```powershell
+   wsl --install
+   ```
+   then reboot and relaunch Docker Desktop.
+3. Run all commands below in **PowerShell**, **Windows Terminal**, or inside a **WSL2** shell —
+   they are identical to the Linux/macOS commands in this README (Docker Desktop makes `docker`
+   and `docker compose` available in all three).
+4. Git for Windows (or WSL's own `git`) is needed for the `git clone` step —
+   [git-scm.com/download/win](https://git-scm.com/download/win).
+5. Open Mission Control in your Windows browser the same way: `http://localhost:51763`.
+6. **ARM-based Windows devices** (Surface Pro X, Copilot+ ARM PCs): the current image is built
+   `linux/amd64` only and will run under emulation (slower) via Docker Desktop's built-in Rosetta/QEMU
+   translation. For a native `arm64` build, open an issue or ask for the CI workflow to add an
+   `arm64` target to `docker/build-push-action`'s `platforms` list.
+7. **Known Windows quirk**: if a named volume mount seems to reset on every `docker compose up`,
+   confirm the project folder isn't on a path Docker Desktop hasn't been granted file-sharing
+   access to (Settings → Resources → File Sharing) — WSL2 backend normally avoids this, but it can
+   still appear with Hyper-V backend or network drives.
+
 ---
 
 ## Quick Start
@@ -53,6 +81,13 @@ git clone https://github.com/n50sharp/hermes-fleet-appliance.git
 cd hermes-fleet-appliance
 
 # Build using docker compose
+docker compose build
+```
+
+Windows (PowerShell) — identical commands:
+```powershell
+git clone https://github.com/n50sharp/hermes-fleet-appliance.git
+cd hermes-fleet-appliance
 docker compose build
 ```
 
