@@ -60,7 +60,7 @@ Windows PCs; see note below for ARM devices).
    and `docker compose` available in all three).
 4. Git for Windows (or WSL's own `git`) is needed for the `git clone` step —
    [git-scm.com/download/win](https://git-scm.com/download/win).
-5. Open Mission Control in your Windows browser the same way: `http://localhost:51763`.
+5. Open Mission Control in your Windows browser: `http://localhost:51763`.
 6. **ARM-based Windows devices** (Surface Pro X, Copilot+ ARM PCs): the current image is built
    `linux/amd64` only and will run under emulation (slower) via Docker Desktop's built-in Rosetta/QEMU
    translation. For a native `arm64` build, open an issue or ask for the CI workflow to add an
@@ -74,35 +74,33 @@ Windows PCs; see note below for ARM devices).
 
 ## Quick Start
 
-### 1. Clone & Build
+### 1. Get the files
 
 ```bash
 git clone https://github.com/n50sharp/hermes-fleet-appliance.git
 cd hermes-fleet-appliance
-
-# Build using docker compose
-docker compose build
 ```
 
-Windows (PowerShell) — identical commands:
-```powershell
-git clone https://github.com/n50sharp/hermes-fleet-appliance.git
-cd hermes-fleet-appliance
-docker compose build
-```
+The same commands work in Windows PowerShell.
 
-Or build bare Docker image:
-```bash
-docker build -t hermes-fleet-appliance .
-```
+### 2. Start the appliance
 
-### 2. Run Appliance
+**Option A: use the prebuilt image (recommended, no build).** The tested image is published
+publicly at `ghcr.io/n50sharp/hermes-fleet-appliance:latest` (linux/amd64). No login is needed.
 
 ```bash
+docker compose pull
 docker compose up -d
 ```
 
-The container will initialize all databases, set up git repositories for the wiki and vault, and launch Mission Control.
+**Option B: build from source.** Slower, but needs no registry access.
+
+```bash
+docker compose up -d --build
+```
+
+The container initializes all databases, sets up git repositories for the wiki and vault, and
+launches Mission Control.
 
 ### 3. Access Mission Control
 
@@ -177,14 +175,14 @@ This appliance is strictly a **clean slate** distribution:
 
 ## Updating the Appliance
 
-To pull updates and rebuild without losing persistent data:
+Update without losing persistent data (named volumes are kept):
 
 ```bash
 git pull origin main
-docker compose build
+docker compose pull          # prebuilt image; or use: docker compose build
 docker compose up -d
 ```
 
 ## Security
 
-The compose file binds Mission Control (`51763`) and the Hermes dashboard (`9119`) to `127.0.0.1` only. They have no built-in login, so do **not** change this to `0.0.0.0` or expose these ports to the internet. For remote access use an SSH tunnel, Tailscale, or an authenticating reverse proxy. Put API keys only in your local `.env`; never commit it.
+The compose file binds Mission Control (`51763`) and the Hermes dashboard (`9119`) to `127.0.0.1` only. They have no built-in login, so do **not** change this to `0.0.0.0` or expose these ports to the internet. For remote access use an SSH tunnel, Tailscale, or an authenticating reverse proxy. Put API keys only in your local `.env` (copy `.env.example`); never commit it. Do not publish your own volumes or images: `hermes_data` holds your keys and sessions once you run `hermes setup`.
