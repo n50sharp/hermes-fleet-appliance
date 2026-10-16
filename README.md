@@ -185,4 +185,4 @@ docker compose up -d
 
 ## Security
 
-The compose file binds Mission Control (`51763`) and the Hermes dashboard (`9119`) to `127.0.0.1` only. They have no built-in login, so do **not** change this to `0.0.0.0` or expose these ports to the internet. For remote access use an SSH tunnel, Tailscale, or an authenticating reverse proxy. Put API keys only in your local `.env` (copy `.env.example`); never commit it. Do not publish your own volumes or images: `hermes_data` holds your keys and sessions once you run `hermes setup`.
+The compose file binds Mission Control (`51763`) and the Hermes dashboard (`9119`) to `127.0.0.1` only. They have no built-in login, so do **not** change this to `0.0.0.0` or expose these ports to the internet. For remote access use an SSH tunnel, Tailscale, or an authenticating reverse proxy. Enter API keys through `hermes setup` (stored in the `hermes_data` volume), never in committed files. Do not publish your own volumes or images: `hermes_data` holds your keys and sessions once you run `hermes setup`.
