@@ -5,8 +5,8 @@ services:
     container_name: hermes-appliance
     restart: unless-stopped
     ports:
-      - "51763:51763"
-      - "9119:9119"
+      - "127.0.0.1:51763:51763"
+      - "127.0.0.1:9119:9119"
     volumes:
       - hermes_data:/home/hermes/.hermes
       - wiki_data:/home/hermes/wiki

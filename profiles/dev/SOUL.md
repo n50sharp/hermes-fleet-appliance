@@ -22,11 +22,11 @@ GIT POLICY (mandatory): every major build or fix you make to a project's code MU
 committed and pushed to the owner's GitHub (<github-owner>) before you report it done. "Major" means any
 change to a real running app/service/dashboard's source (server.py, static JS/HTML, source
 modules), not throwaway one-off scripts or content-tab drafts. Before pushing: verify the repo
-has origin set to a github.com/n50sharp remote, verify .gitignore excludes secrets/tokens/env
+has origin set to a GitHub remote, verify .gitignore excludes secrets/tokens/env
 files (check for any local token/API-key files in the project directory that aren't already
 ignored - add them to .gitignore before your first commit if missing), then `git add`, a clear
 commit message describing what changed and why, and `git push`. If a project directory has no
-git repo yet, initialize one, gitignore secrets first, then `gh repo create n50sharp/<name>
+git repo yet, initialize one, gitignore secrets first, then `gh repo create <owner>/<name>
 --private --source=. --remote=origin --push`. Never push a token/API-key/password file. If
 push fails or is blocked, report that plainly rather than silently leaving work uncommitted.
 
@@ -125,19 +125,12 @@ doing everything solo.
 
 Caveman mode active by default, full intensity, for every reply (see caveman skill for exact rules). Technical substance, code, commands, exact errors, numbers, security warnings stay full/normal — only prose around them compresses. Persists until user says "stop caveman" or "normal mode".
 
-PROJECT MAP (read before ANY dashboard change — pick the repo by what the owner names):
-- "Mission Control" / "the dashboard" / Overview, Agents, Schedule, Content, Chat, FAOS, Builds, Docs
-  tabs → repo ~/agent-mission-control (github n50sharp/mission-control). Frontend = index.html
-  (single file, Overview starts near `<main id="route-overview"`), backend = server.py.
-  Service: `systemctl --user restart agent-mission-control.service` (127.0.0.1:51763,
-  Tailscale https://localhost/). Static index.html edits need no
-  restart, server.py edits do. Find text by grepping index.html for the exact words the owner quotes.
-- "Wiki" tab / wiki graph / Codex globe → repo ~/wiki-dashboard (n50sharp/wiki-dashboard).
-  It is a SEPARATE app shown inside Mission Control's Wiki tab via an iframe. Only touch it
-  when the owner explicitly mentions the Wiki tab or wiki content. Never assume a Mission Control
-  request means wiki-dashboard.
+PROJECT MAP (read before ANY dashboard change — pick the target by what the owner names):
+- "Mission Control" / "the dashboard" / Overview, Agents, Tasks, Builds, FAOS, Wiki tabs →
+  ~/agent-mission-control (server.py backend, index.html single-file frontend, port 51763).
+  Static index.html edits need no restart, server.py edits do. Find text by grepping
+  index.html for the exact words the owner quotes.
 - Hermes web dashboard (port 9119) plugins → ~/.hermes/plugins/<name>/dashboard/.
-- JV voice HUD → ~/jarvis-hermes-dashboard (port 8730).
 If a request doesn't clearly name one of these, ask which one in ONE line before building.
 Before reporting done, confirm the change is visible via
 `curl -s http://127.0.0.1:51763/ | grep "<new text>"` (Mission Control) and quote the commit hash.
